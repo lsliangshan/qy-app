@@ -9,7 +9,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const path = require('path');
 
-function resolvePath(dir) {
+function resolvePath (dir) {
   return path.join(__dirname, '..', dir);
 }
 
@@ -39,6 +39,7 @@ module.exports = {
   },
   devtool: env === 'production' ? 'source-map' : 'eval',
   devServer: {
+    host: '0.0.0.0',
     hot: true,
     open: true,
     compress: true,
@@ -172,10 +173,10 @@ module.exports = {
       }),
       new webpack.optimize.ModuleConcatenationPlugin(),
     ] : [
-      // Development only plugins
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin(),
-    ]),
+        // Development only plugins
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
+      ]),
     new HtmlWebpackPlugin({
       filename: './index.html',
       template: './src/index.html',
